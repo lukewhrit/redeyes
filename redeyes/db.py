@@ -14,24 +14,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
 import psycopg2
 import logging
 
-def write_entry(conn):
+def migrate(conn):
     cur = conn.cursor()
 
-    cur.execute("SELECT * FROM ")
-    return
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS links (
+            ID   TEXT PRIMARY KEY NOT NULL,
+            LONG TEXT NOT NULL
+        )
+    """)
 
-def read_entry(conn):
-    return
+    cur.close()
+    conn.commit()
 
-def connect(dsn):
-    try:
-        conn = psycopg2.connect(dsn)
-        logging.info("Successfully connected to PostgreSQL database")
-        return conn
-    except:
-        logging.critical("Database did not connect successfully")
-        exit(1)
+def connect(dsn: str):
+    conn = psycopg2.connect(dsn)
+
+    return conn

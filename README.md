@@ -31,7 +31,7 @@ It is built with Flask and supports a wide range of different shortening styles 
 
 ## TODO
 
-- [ ] Implement database functionality
+- [X] Implement database functionality
 - [ ] API Routes
 - [ ] Error handling
 

@@ -16,14 +16,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from __init__ import __version__
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from urllib.parse import urlparse
-import db
 import logging
 import random
+import redeyes.db
 
 DEBUG = True
 SLUG_LENGTH = 6
+DSN = "host=localhost port=5432 dbname=whrit user=whrit"
 
 app = Flask("redeyes")
 app.config.from_mapping({
@@ -52,7 +53,18 @@ def index():
         link = urlparse(body["link"])
 
         if link.scheme and link.netloc:
-            print("valid")
+            conn = redeyes.db.connect(DSN)
+            cur = conn.cursor()
+
+            cur.execute("INSERT INTO links (id, long) VALUES (%s, %s)",
+                        (id, body["link"]))
+
+            cur.close()
+            conn.commit()
+
+            print(request.host_url)
+
+            return render_template("index.html", version=__version__, link="%s/%s" % (request.host, id))
         else:
             print("failed")
 
@@ -61,10 +73,20 @@ def index():
 
     return render_template("index.html", version=__version__)
 
-@app.get("/<link>")
-def link(link):
+@app.get("/<id>")
+def fetch(id):
+    conn = redeyes.db.connect(DSN)
+    cur = conn.cursor()
+
+    cur.execute("SELECT long FROM links WHERE id='%s'" % (id))
+    link = cur.fetchone()
+
     print(link)
-    return link
+
+    cur.close()
+    conn.commit()
+
+    return redirect(link[0], code=308)
 
 if __name__ == "__main__":
     if DEBUG:
@@ -72,6 +94,7 @@ if __name__ == "__main__":
     else:
         logging.basicConfig(level=logging.INFO)
 
-    db.connect("host=localhost port=5432 dbname=whrit user=whrit")
+    redeyes.db.migrate(redeyes.db.connect(DSN))
+
     app.run()
 

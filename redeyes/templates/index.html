@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>redeyes</title>
+
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+    </head>
+    <body>
+        <main>
+            <div>
+                <form method="post">
+                    <label for="link">
+                        <h1>redeyes</h1>
+                    </label>
+
+                    <input name="link" id="link" type="url" placeholder="https://google.com" required>
+                    <input type="submit" id="submit" value="👉">
+                </form>
+
+                {% if link %}
+                <p id="link-text">
+                    Success!
+                    <a href="https://redey.es/{{ link }}" rel="noreferrer" target="_blank">
+                        redey.es/{{ link }}
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+        </main>
+        <footer>
+            <p>This site is running redeyes, Version {{ version }}: a simple URL shortener in Python.</p>
+
+            <p>
+                <a href="https://github.com/lukewhrit/redeyes" rel="noreferrer" target="_blank">Source</a> ・
+                <a href="https://github.com/lukewhrit/redeyes/blob/main/README.md" rel="noreferrer" target="_blank">Docs</a> ・
+                <a href="https://github.com/lukewhrit/redeyes/blob/main/LICENSE" rel="noreferrer" target="_blank">License</a>
+            </p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "redeyes"
+authors = [{name = "Luke Whritenour", email = "lukewhrit@proton.me"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
+dynamic = ["version", "description"]
+requires-python = ">=3.10"
+dependencies = [
+    "Flask ~= 2.2.0",
+    "psycopg2 ~= 2.9.5 "
+]
+
+[project.urls]
+Home = "https://github.com/lukewhrit/redeyes"

@@ -1,0 +1,96 @@
+:root {
+    --color-white: #f5f5f5;
+    --color-red: #f05454;
+    --color-red-2: #b94444;
+    --color-blue: #30475e;
+    --color-black: #121212;
+
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", Helvetica, Cantarell, Ubuntu, "Noto Sans", Roboto, "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-monospace: Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;
+}
+
+body {
+    background-color: var(--color-black);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+main div {
+    background-color: var(--color-red);
+    font-family: var(--font-monospace);
+    padding: 30px;
+    color: var(--color-black);
+    box-shadow: 12px 12px var(--color-red-2);
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+    color: var(--color-black);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+input {
+    background-color: var(--color-blue);
+    padding: 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: var(--color-white);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 12px;
+}
+
+input::placeholder {
+    font-size: 14px;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+}
+
+p {
+    margin-top: 0px;
+}
+
+p:last-child {
+    margin-bottom: 0px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    background-color: var(--color-blue);
+    font-family: var(--font-sans);
+    color: var(--color-white);
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 18px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 12px;
+    max-width: 250px;
+}
+
+a, a:visited {
+    color: var(--color-white);
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#link-text {
+    color: var(--color-white);
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+    font-family: var(--font-sans);
+}

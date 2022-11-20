@@ -81,8 +81,6 @@ def fetch(id):
     cur.execute("SELECT long FROM links WHERE id='%s'" % (id))
     link = cur.fetchone()
 
-    print(link)
-
     cur.close()
     conn.commit()
 

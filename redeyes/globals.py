@@ -15,18 +15,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from flask import Flask
+from os import environ as env
+from redeyes.__init__ import __version__
 
-from redeyes import views
-
-def create_app(config) -> Flask:
-    app = Flask("redeyes")
-
-    app.config.from_mapping({
-        "JSON_SORT_KEYS": False,
-        **config
-    })
-
-    app.register_blueprint(views.views)
-
-    return app
+VERSION = __version__
+DEBUG = True
+SLUG_LENGTH = env.get("REDEYES_SLUG_LENGTH", "6")
+DSN = env.get("REDEYES_DSN", "host=localhost port=5432 dbname=redeyes user=redeyes")
+PORT = env.get("PORT", "80")
+HOST = env.get("HOST", "0.0.0.0")

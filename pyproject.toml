@@ -12,7 +12,7 @@ dynamic = ["version", "description"]
 requires-python = ">=3.10"
 dependencies = [
     "Flask ~= 2.2.0",
-    "psycopg2 ~= 2.9.5 "
+    "psycopg2 ~= 2.9.5"
 ]
 
 [project.urls]

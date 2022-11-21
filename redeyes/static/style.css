@@ -3,6 +3,7 @@
     --color-red: #f05454;
     --color-red-2: #b94444;
     --color-blue: #30475e;
+    --color-blue-2: #293b4d;
     --color-black: #121212;
 
     --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", Helvetica, Cantarell, Ubuntu, "Noto Sans", Roboto, "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -47,11 +48,17 @@ input {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 12px;
 }
 
+input:active, input:focus {
+    background-color: var(--color-blue-2);
+    outline: none;
+}
+
 input::placeholder {
     font-size: 14px;
 }
 
 input[type=submit]:hover {
+    background-color: var(--color-blue-2);
     cursor: pointer;
 }
 

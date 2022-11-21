@@ -2,7 +2,7 @@ PYTHON ?= python3
 
 override PYTESTFLAGS := -q --showlocals $(PYTESTFLAGS)
 
-PYSOURCES := src/ tests/
+PYSOURCES := redeyes/ tests/
 
 .PHONY: all
 all:
@@ -13,11 +13,6 @@ clean:
 .PHONY: develop
 develop:
 	$(PYTHON) -m pip install --editable .[all]
-
-.PHONY: cover
-cover: test
-	coverage report
-	coverage html -q
 
 .PHONY: test
 test:

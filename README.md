@@ -16,24 +16,68 @@ It is built with Flask and supports a wide range of different shortening styles 
 - [🌹 Redeyes](#-redeyes)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
+    - [via Docker](#via-docker)
+    - [via PyPi](#via-pypi)
+    - [Manual](#manual)
   - [Documentation](#documentation)
     - [Usage](#usage)
     - [Configuration](#configuration)
+      - [Host](#host)
+      - [Port](#port)
+      - [Slug Length](#slug-length)
+      - [DSN](#dsn)
     - [API Reference](#api-reference)
   - [TODO](#todo)
   - [License](#license)
 
 ## Installation
+### via Docker
+### via PyPi
+### Manual
 ## Documentation
+
 ### Usage
 ### Configuration
+
+Redeyes is configurable via environment variables. Primarily four to be specific, all prefixed with `REDEYES_`.All variables have default values, but you will probably want to set a value for at least `DSN`.
+
+#### Host
+
+`HOST` is the IP address/domain you wish to make the redeyes instance accessible on.
+
+By default, `0.0.0.0`. This value is most likely good enough for your purposes, but feel free to change it.
+
+#### Port
+
+`PORT` is the port on which you wish to make the redeyes instance accessible.
+
+By default, `80`.
+
+#### Slug Length
+
+`SLUG_LENGTH` is the length of the ids redeyes will generate when shortening URLs. Note that by making this value too low, you may begin to run into issues as the maximum possible combinations may now be too few to function properly.
+
+By default, `6`.
+
+#### DSN
+
+`DSN` represents the connection string for the PostgreSQL database you wish to use. The format of these connection strings is available [here, on the Postgres docs](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). Generally though, the format is as follows:
+
+```
+host=localhost port=5432 dbname= user=
+```
+
+By default, it uses `redeyes` for the dbname and user fields.
+
 ### API Reference
 
 ## TODO
 
 - [X] Implement database functionality
 - [ ] API Routes
+- [ ] Rate-limiting
 - [ ] Error handling
+  - [ ] Logging
 
 ## License
 

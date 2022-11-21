@@ -15,18 +15,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from flask import Flask
+import logging
 
-from redeyes import views
+from redeyes import db, globals, app
 
-def create_app(config) -> Flask:
-    app = Flask("redeyes")
+application = app.create_app({
+    "DEBUG": False,
+})
 
-    app.config.from_mapping({
-        "JSON_SORT_KEYS": False,
-        **config
-    })
+if __name__ == "__main__":
+    # do migrations
+    db.migrate(db.connect(globals.DSN))
 
-    app.register_blueprint(views.views)
+    if globals.DEBUG:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
-    return app
+    application.run(host="0.0.0.0", port=globals.PORT, debug=globals.DEBUG)

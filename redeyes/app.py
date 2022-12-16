@@ -19,6 +19,7 @@ from flask import Flask
 
 from redeyes import views
 
+
 def create_app(config) -> Flask:
     app = Flask("redeyes")
 

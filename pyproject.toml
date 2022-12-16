@@ -15,5 +15,16 @@ dependencies = [
     "psycopg2 ~= 2.9.5"
 ]
 
+[project.optional-dependencies]
+lint = [
+    "isort == 5.11.2",
+    "flake8 ~= 6.0.0",
+    "flake8-bugbear == 22.12.6",
+    "flake8-commas == 2.1.0",
+    "flake8-comprehensions == 3.10.0",
+    "flake8-quotes == 3.3.1",
+    "pep8-naming == 0.13.2",
+]
+
 [project.urls]
 Home = "https://github.com/lukewhrit/redeyes"

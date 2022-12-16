@@ -1,18 +1,14 @@
 PYTHON ?= python3
-
-override PYTESTFLAGS := -q --showlocals $(PYTESTFLAGS)
-
-PYSOURCES := redeyes/ tests/
-
-.PHONY: all
-all:
-
-.PHONY: clean
-clean:
+PYSOURCES := redeyes
 
 .PHONY: develop
 develop:
-	$(PYTHON) -m pip install --editable .[all]
+	DEBUG=true $(PYTHON) -m flask --app $(PYSOURCES)/wsgi.py run
+
+
+.PHONY: develop
+production:
+	$(PYTHON) -m gunicorn $(PYSOURCES).wsgi
 
 .PHONY: test
 test:
@@ -20,9 +16,9 @@ test:
 
 .PHONY: lint
 lint:
-	$(PYTHON) -m flake8 --show-source $(PYSOURCES)
-	$(PYTHON) -m isort --check $(PYSOURCES)
+	$(PYTHON) -m flake8 --show-source $(PYSOURCES)/
+	$(PYTHON) -m isort --check $(PYSOURCES)/
 
 .PHONY: fix
 fix:
-	$(PYTHON) -m isort --quiet $(PYSOURCES)
+	$(PYTHON) -m isort --quiet $(PYSOURCES)/

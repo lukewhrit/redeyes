@@ -17,10 +17,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
 
-from redeyes import db, globals, app
+from redeyes import app, db, globals
 
 application = app.create_app({
-    "DEBUG": False,
+    "DEBUG": globals.DEBUG,
 })
 
 if __name__ == "__main__":
@@ -32,4 +32,4 @@ if __name__ == "__main__":
     else:
         logging.basicConfig(level=logging.INFO)
 
-    application.run(host="0.0.0.0", port=globals.PORT, debug=globals.DEBUG)
+    application.run(host=globals.HOST, port=globals.PORT, debug=globals.DEBUG)

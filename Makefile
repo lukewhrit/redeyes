@@ -1,4 +1,5 @@
 PYTHON ?= python3
+PYSOURCES := redeyes/
 
 .PHONY: develop
 develop:

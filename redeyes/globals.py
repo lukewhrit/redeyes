@@ -16,6 +16,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from os import environ as env
+
 from redeyes.__init__ import __version__
 
 VERSION = __version__

@@ -16,6 +16,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import psycopg2
 
+
 def migrate(conn):
     cur = conn.cursor()
 
@@ -28,6 +29,7 @@ def migrate(conn):
 
     cur.close()
     conn.commit()
+
 
 def connect(dsn: str):
     conn = psycopg2.connect(dsn)

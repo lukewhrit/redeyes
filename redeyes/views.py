@@ -7,6 +7,7 @@ from redeyes import db, globals
 
 views = Blueprint('views', __name__)
 
+
 def generate_id():
     random_string = ""
 
@@ -19,6 +20,7 @@ def generate_id():
         random_string += (chr(random_integer))
 
     return random_string
+
 
 @views.route("/", methods=["GET", "POST"])
 def index():
@@ -37,13 +39,15 @@ def index():
             cur.close()
             conn.commit()
 
-            return render_template("index.html", version=globals.VERSION, link="%s/%s" % (request.host, id))
+            return render_template("index.html", version=globals.VERSION,
+                                   link="%s/%s" % (request.host, id))
         else:
             print("failed")
 
         return render_template("index.html", version=globals.VERSION, link=id)
 
     return render_template("index.html", version=globals.VERSION)
+
 
 @views.get("/<id>")
 def fetch(id):

@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
 
-from redeyes import db, globals, app
+from redeyes import app, db, globals
 
 application = app.create_app({
     "DEBUG": False,

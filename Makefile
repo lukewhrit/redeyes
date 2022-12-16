@@ -1,17 +1,12 @@
 PYTHON ?= python3
 
-override PYTESTFLAGS := -q --showlocals $(PYTESTFLAGS)
-
-PYSOURCES := redeyes/ tests/
-
-.PHONY: all
-all:
-
-.PHONY: clean
-clean:
-
 .PHONY: develop
 develop:
+	$(PYTHON) -m pip install --editable .[all]
+
+
+.PHONY: develop
+production:
 	$(PYTHON) -m pip install --editable .[all]
 
 .PHONY: test

@@ -32,4 +32,4 @@ if __name__ == "__main__":
     else:
         logging.basicConfig(level=logging.INFO)
 
-    application.run(host="0.0.0.0", port=globals.PORT, debug=globals.DEBUG)
+    application.run(host=globals.HOST, port=globals.PORT, debug=globals.DEBUG)

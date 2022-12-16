@@ -37,8 +37,6 @@ def index():
             cur.close()
             conn.commit()
 
-            print(request.host_url)
-
             return render_template("index.html", version=globals.VERSION, link="%s/%s" % (request.host, id))
         else:
             print("failed")

@@ -20,7 +20,7 @@ import logging
 from redeyes import app, db, globals
 
 application = app.create_app({
-    "DEBUG": False,
+    "DEBUG": globals.DEBUG,
 })
 
 if __name__ == "__main__":

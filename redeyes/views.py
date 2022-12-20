@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 
 from flask import Blueprint, redirect, render_template, request
 
-from redeyes import db, globals
+from redeyes import database, globals
 
 views = Blueprint('views', __name__)
 
@@ -30,7 +30,7 @@ def index():
         link = urlparse(body["link"])
 
         if link.scheme and link.netloc:
-            conn = db.connect(globals.DSN)
+            conn = database.connect(globals.DSN)
             cur = conn.cursor()
 
             cur.execute("INSERT INTO links (id, long) VALUES (%s, %s)",
@@ -51,7 +51,7 @@ def index():
 
 @views.get("/<id>")
 def fetch(id):
-    conn = db.connect(globals.DSN)
+    conn = database.connect(globals.DSN)
     cur = conn.cursor()
 
     cur.execute("SELECT long FROM links WHERE id='%s'" % (id))

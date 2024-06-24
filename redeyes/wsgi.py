@@ -17,16 +17,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
 
-from redeyes import app, database, globals
+from redeyes import app, globals
 
 application = app.create_app({
     "DEBUG": globals.DEBUG,
 })
 
 if __name__ == "__main__":
-    # do migrations
-    database.migrate(database.connect(globals.DSN))
-
     if globals.DEBUG:
         logging.basicConfig(level=logging.DEBUG)
     else:

@@ -17,11 +17,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from flask import Flask
 
-from redeyes import views
+from redeyes import database, views, globals
 
 
 def create_app(config) -> Flask:
     app = Flask("redeyes")
+
+    # do migrations
+    conn = database.connect(globals.DSN)
+    database.migrate(conn)
 
     app.config.from_mapping({
         "JSON_SORT_KEYS": False,

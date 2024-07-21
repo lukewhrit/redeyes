@@ -9,7 +9,7 @@ It is built with Flask and supports a wide range of different shortening styles 
 - Extensible design, but sane by default.
 - Compact: it only requires a single server running Python and a database.
 - Pure and pretty HTML UI; completely JavaScript-free!
-- Simplistic—only two routes.
+- Simplistic— only two routes.
 
 ## Table of Contents
 
@@ -21,6 +21,9 @@ It is built with Flask and supports a wide range of different shortening styles 
     - [Manual](#manual)
   - [Documentation](#documentation)
     - [Usage](#usage)
+      - [API Routes](#api-routes)
+        - [`/shorten`](#shorten)
+        - [`/fetch`](#fetch)
     - [Configuration](#configuration)
       - [Host](#host)
       - [Port](#port)
@@ -37,9 +40,35 @@ It is built with Flask and supports a wide range of different shortening styles 
 ## Documentation
 
 ### Usage
+
+> [!TIP]
+> Redeyes can be accessed on the web at [https://rdy.es](https://rdy.es).
+
+#### API Routes
+
+The API can be accessed at the `/api/v1/` prefix.
+
+##### `/shorten`
+
+* **Accepts:** `application/json`, `multipart/form-data`
+* **Body Parameters:**
+  * `link`: `string`: The long form URL you wish to shorten
+* **Returns:**
+  * `200 {"short":""}`: The random identifier for the shortened URL
+  * `415 Unsupported Media Type`: Triggers when the Content-Type is not `application/json` or `multipart/form-data`
+  * `400 Bad Request`: Triggers when `link` is missing or not a valid URL
+
+##### `/fetch`
+* **Query Parameters:**
+  * `short`: `string`: The shortened URL identifier
+* **Returns:**
+  * `200 {"long":""}`: The long form URL
+  * `400 Bad Request:` Missing required `short` parameter
+  * `404 Not Found`: Could not find link for provided identifier
+
 ### Configuration
 
-Redeyes is configurable via environment variables. Primarily four to be specific, all prefixed with `REDEYES_`.All variables have default values, but you will probably want to set a value for at least `DSN`.
+Redeyes is configurable via environment variables. All environment variables are prefixed with `REDEYES_`. All variables have default values, but you will probably want to set a value for at least `DSN`.
 
 #### Host
 
@@ -74,7 +103,7 @@ By default, it uses `redeyes` for the dbname and user fields.
 ## TODO
 
 - [X] Implement database functionality
-- [ ] API Routes
+- [X] API Routes
 - [ ] Rate-limiting
 - [ ] Error handling
   - [ ] Logging

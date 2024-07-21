@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from flask import Flask
 
-from redeyes import database, views, globals
+from redeyes import database, views, globals, api
 
 
 def create_app(config) -> Flask:
@@ -33,5 +33,6 @@ def create_app(config) -> Flask:
     })
 
     app.register_blueprint(views.views)
+    app.register_blueprint(api.api)
 
     return app

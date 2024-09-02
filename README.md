@@ -10,6 +10,10 @@ It is built with Flask and supports a wide range of different shortening styles 
 - Compact: it only requires a single server running Python and a database.
 - Pure and pretty HTML UI; completely JavaScript-free!
 - Simplistic— only two routes.
+- Expiring links.
+- Manage short links via a dashboard.
+- Admin page and account system.
+- Require password for links.
 
 ## Table of Contents
 

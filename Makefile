@@ -5,8 +5,13 @@ PYSOURCES := redeyes
 develop:
 	DEBUG=true $(PYTHON) -m flask --app $(PYSOURCES)/wsgi.py run
 
+.PHONY: venv
+venv:
+	$(PYTHON) -m venv .venv
+	$(PYTHON) -m pip install --upgrade pip
+	$(PYTHON) -m pip install -r requirements.txt
 
-.PHONY: develop
+.PHONY: production
 production:
 	$(PYTHON) -m gunicorn $(PYSOURCES).wsgi
 

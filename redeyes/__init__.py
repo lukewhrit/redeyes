@@ -8,7 +8,7 @@ be extended with many other adapters in the future.
 """
 
 """
-Copyright (C) 2022 Luke Whritenour
+Copyright (C) 2022-2024 Luke Whritenour
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify, request
 
 from redeyes import database, globals
 from redeyes.views import generate_id

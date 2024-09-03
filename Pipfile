@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+blinker = "==1.8.2"
+click = "==8.1.7"
+flask = "==3.0.3"
+itsdangerous = "==2.2.0"
+jinja2 = "==3.1.4"
+markupsafe = "==2.1.5"
+psycopg2-binary = "==2.9.9"
+werkzeug = "==3.0.3"
+
+[dev-packages]
+flake8 = "*"
+isort = "*"
+
+[requires]
+python_version = "3.12"
+
+[scripts]
+start = "flask --app redeyes/wsgi.py run"
+production = "gunicorn redeyes.wsgi run"
+test = "pytest"
+lint = "flake8 --show-source redeyes && isort redeyes"
+fix = "isort --quiet redeyes"

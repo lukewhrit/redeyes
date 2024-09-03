@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from flask import Flask
 
-from redeyes import database, views, globals, api
+from redeyes import api, database, globals, views
 
 
 def create_app(config) -> Flask:

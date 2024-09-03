@@ -23,9 +23,12 @@ from redeyes import api, database, globals, views
 def create_app(config) -> Flask:
     app = Flask("redeyes")
 
-    # do migrations
-    conn = database.connect(globals.DSN)
-    database.migrate(conn)
+    # sqlalchemy
+    app.config["SQLALCHEMY_DATABASE_URI"] = globals.DSN
+    database.db.init_app(app)
+
+    with app.app_context():
+        database.db.create_all()
 
     app.config.from_mapping({
         "JSON_SORT_KEYS": False,

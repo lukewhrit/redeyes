@@ -22,6 +22,6 @@ from redeyes.__init__ import __version__
 VERSION = __version__
 DEBUG = env.get("DEBUG", True)
 SLUG_LENGTH = env.get("REDEYES_SLUG_LENGTH", "6")
-DSN = env.get("REDEYES_DSN", "host=localhost port=5432 dbname=redeyes user=redeyes")
+DSN = env.get("REDEYES_DSN", "sqlite:///database.db")
 PORT = env.get("REDEYES_PORT", "80")
 HOST = env.get("REDEYES_HOST", "0.0.0.0")

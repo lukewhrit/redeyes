@@ -14,24 +14,18 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-import psycopg2
+
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
 
-def migrate(conn):
-    cur = conn.cursor()
-
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS links (
-            ID   TEXT PRIMARY KEY NOT NULL,
-            LONG TEXT NOT NULL
-        )
-    """)
-
-    cur.close()
-    conn.commit()
+class Base(DeclarativeBase):
+    pass
 
 
-def connect(dsn: str):
-    conn = psycopg2.connect(dsn)
+db = SQLAlchemy(model_class=Base)
 
-    return conn
+
+class Link(db.Model):
+    id = db.Column(db.String, primary_key=True, nullable=False)
+    long = db.Column(db.String, nullable=False)

@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 
 from flask import Blueprint, jsonify, request
 
-from redeyes import database, globals
+from redeyes.database import db, Link
 from redeyes.views import generate_id
 
 api = Blueprint('api', __name__)
@@ -40,14 +40,10 @@ def shorten():
     link = urlparse(body["link"])
 
     if link.scheme and link.netloc:
-        conn = database.connect(globals.DSN)
-        cur = conn.cursor()
+        link = Link(id=id, long=body["link"])
 
-        cur.execute("INSERT INTO links (id, long) VALUES (%s, %s)",
-                    (id, body["link"]))
-
-        cur.close()
-        conn.commit()
+        db.session.add(link)
+        db.session.commit()
 
         return jsonify({"short": id})
 
@@ -62,15 +58,8 @@ def fetch():
         return jsonify({"error": "Missing required parameter: short"}), 400
 
     try:
-        conn = database.connect(globals.DSN)
-        cur = conn.cursor()
+        link = db.session.query(Link).filter(Link.id == short).one()
 
-        cur.execute("SELECT long FROM links WHERE id='%s'" % (short))
-        link = cur.fetchone()
-
-        cur.close()
-        conn.commit()
-
-        return jsonify({"long": link[0]})
+        return jsonify({"long": link.long})
     except Exception:
         return jsonify({"error": "Link not found"}), 404

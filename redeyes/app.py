@@ -25,6 +25,7 @@ def create_app(config) -> Flask:
 
     # sqlalchemy
     app.config["SQLALCHEMY_DATABASE_URI"] = globals.DSN
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     database.db.init_app(app)
 
     with app.app_context():

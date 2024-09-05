@@ -1,5 +1,5 @@
 """
-Copyright (C) 2022 Luke Whritenour
+Copyright (C) 2022-2024 Luke Whritenour
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,15 +17,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from flask import Flask
 
-from redeyes import database, views, globals, api
+from redeyes import api, database, globals, views
 
 
 def create_app(config) -> Flask:
     app = Flask("redeyes")
 
-    # do migrations
-    conn = database.connect(globals.DSN)
-    database.migrate(conn)
+    # sqlalchemy
+    app.config["SQLALCHEMY_DATABASE_URI"] = globals.DSN
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    database.db.init_app(app)
+
+    with app.app_context():
+        database.db.create_all()
 
     app.config.from_mapping({
         "JSON_SORT_KEYS": False,

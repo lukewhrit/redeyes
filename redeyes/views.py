@@ -30,19 +30,15 @@ def index():
         link = urlparse(body["link"])
 
         if link.scheme and link.netloc:
-            conn = database.connect(globals.DSN)
-            cur = conn.cursor()
+            link = database.Link(id=id, long=body["link"])
 
-            cur.execute("INSERT INTO links (id, long) VALUES (%s, %s)",
-                        (id, body["link"]))
-
-            cur.close()
-            conn.commit()
+            database.db.session.add(link)
+            database.db.session.commit()
 
             return render_template("index.html", version=globals.VERSION,
                                    link="%s/%s" % (request.host, id))
         else:
-            print("failed")
+            return "Not a URL", 400
 
         return render_template("index.html", version=globals.VERSION, link=id)
 
@@ -51,13 +47,6 @@ def index():
 
 @views.get("/<id>")
 def fetch(id):
-    conn = database.connect(globals.DSN)
-    cur = conn.cursor()
+    link = database.db.get_or_404(database.Link, id)
 
-    cur.execute("SELECT long FROM links WHERE id='%s'" % (id))
-    link = cur.fetchone()
-
-    cur.close()
-    conn.commit()
-
-    return redirect(link[0], code=308)
+    return redirect(link.long, code=308)

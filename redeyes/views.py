@@ -49,6 +49,11 @@ def index():
 def fetch(id):
     link = database.db.get_or_404(database.Link, id)
 
+    link.visits += 1
+    link.last_visited = database.db.func.now()
+
+    database.db.session.commit()
+
     return redirect(link.long, code=308)
 
 

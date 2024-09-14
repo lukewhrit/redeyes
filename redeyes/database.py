@@ -29,3 +29,8 @@ db = SQLAlchemy(model_class=Base)
 class Link(db.Model):
     id = db.Column(db.String, primary_key=True, nullable=False)
     long = db.Column(db.String, nullable=False)
+    created_on = db.Column(db.DateTime, server_default=db.func.now())
+    updated_on = db.Column(db.DateTime, server_default=db.func.now(),
+                           onupdate=db.func.now())
+    visits = db.Column(db.Integer, default=0)
+    last_visited = db.Column(db.DateTime)

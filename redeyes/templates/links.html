@@ -29,8 +29,8 @@
                         <h2>{{link.id}}</h2>
                         <ul>
                             <li>Redirects to <a href="{{link.long}}" class="black">{{link.long}}</a></li>
-                            <li>Created on <strong>9/13/2024</strong> at <strong>12:24 AM</strong> by <strong style="cursor:help;" title="Jakarta, Jakarta, Indonesia">1.1.1.1</strong></li>
-                            <li>Clicked <strong>200</strong> times, last on <strong>9/13/2024</strong></li>
+                            <li>Created on <strong>{{link.created_on.date()}}</strong> at <strong>{{link.created_on.time()}}</strong> by <strong style="cursor:help;" title="Jakarta, Jakarta, Indonesia">1.1.1.1</strong></li>
+                            <li>Clicked <strong>{{link.visits}}</strong> times, last on <strong>{{link.last_visited.date()}}</strong></li>
                         </ul>
                         <div class="grid">
                             <a href="/links?short={{link.id}}&statistics=true" class="button emoji" aria-label="Link statistics">📊</a>

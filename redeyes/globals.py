@@ -16,6 +16,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from os import environ as env
+import json
 
 from redeyes.__init__ import __version__
 
@@ -23,5 +24,7 @@ VERSION = __version__
 DEBUG = env.get("DEBUG", True)
 SLUG_LENGTH = env.get("REDEYES_SLUG_LENGTH", "6")
 DSN = env.get("REDEYES_DSN", "sqlite:///database.db")
+RATELIMITER = env.get("REDEYES_RATELIMITER", "memory://")
+RATELIMITS = json.loads(env.get("REDEYES_RATELIMITS", '["200 per day", "50 per hour"]'))
 PORT = env.get("REDEYES_PORT", "80")
 HOST = env.get("REDEYES_HOST", "0.0.0.0")

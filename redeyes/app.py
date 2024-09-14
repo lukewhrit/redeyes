@@ -16,6 +16,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from flask import Flask
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 
 from redeyes import api, database, globals, views
 
@@ -30,6 +33,14 @@ def create_app(config) -> Flask:
 
     with app.app_context():
         database.db.create_all()
+
+    # flask limiter
+    Limiter(
+        get_remote_address,
+        app=app,
+        default_limits=globals.RATELIMITS,
+        storage_uri=globals.RATELIMITER,
+    )
 
     app.config.from_mapping({
         "JSON_SORT_KEYS": False,

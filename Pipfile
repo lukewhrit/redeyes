@@ -13,6 +13,7 @@ markupsafe = "==2.1.5"
 werkzeug = "==3.0.3"
 psycopg2-binary = "*"
 flask-sqlalchemy = "*"
+flask-limiter = "*"
 
 [dev-packages]
 flake8 = "*"

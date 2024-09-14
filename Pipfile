@@ -22,7 +22,7 @@ isort = "*"
 python_version = "3.12"
 
 [scripts]
-start = "flask --app redeyes/wsgi.py run"
+start = "flask --app redeyes/wsgi.py --debug run"
 production = "gunicorn redeyes.wsgi run"
 test = "pytest"
 lint = "flake8 --show-source redeyes && isort redeyes"

@@ -15,6 +15,7 @@ body {
 }
 
 main {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +23,7 @@ main {
     height: 100vh;
 }
 
-main div {
+main #box {
     background-color: var(--color-red);
     font-family: var(--font-monospace);
     padding: 30px;
@@ -90,6 +91,11 @@ a, a:visited {
     text-decoration: underline;
 }
 
+a.black {
+    color: var(--color-black);
+    font-weight: bold;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -100,4 +106,35 @@ a:hover {
     text-align: center;
     display: block;
     font-family: var(--font-sans);
+}
+
+ul.buttons {
+    list-style-type: none;
+    padding: 0px;
+    overflow: scroll;
+    max-height: 250px;
+}
+
+.button {
+    background-color: var(--color-blue);
+    padding: 12px 18px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: var(--color-white);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 12px;
+    margin-bottom: 10px;
+}
+
+.button.emoji {
+    text-decoration: none;
+}
+
+.grid {
+    display: flex;
+    gap: 15px;
+}
+
+.wide {
+    min-width: 623px;
 }

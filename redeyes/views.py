@@ -50,3 +50,22 @@ def fetch(id):
     link = database.db.get_or_404(database.Link, id)
 
     return redirect(link.long, code=308)
+
+
+@views.get("/links")
+def dashboard():
+    links = database.db.session.query(database.Link).all()
+    short = request.args.get("short")
+
+    if short:
+        m = [o for o in links if o.id == short]
+
+        return render_template(
+            "links.html", version=globals.VERSION,
+            link=m[0], links=links,
+        )
+
+    return render_template(
+        "links.html", version=globals.VERSION,
+        link={}, links=links,
+    )

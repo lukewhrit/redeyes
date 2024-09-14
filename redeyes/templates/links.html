@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>redeyes</title>
+
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+    </head>
+    <body>
+        <main>
+            <div id="box" class="wide">
+                <h1><a href="/" class="black">redeyes</a></h1>
+                <hr>
+                <div class="grid">
+                    <ul class="buttons">
+                        {% for link in links %}
+                        <li class="button">
+                            <a href="/links?short={{link.id}}">{{link.id}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="spaced">
+                        {% if link %}
+                        <h2>{{link.id}}</h2>
+                        <ul>
+                            <li>Redirects to <a href="{{link.long}}" class="black">{{link.long}}</a></li>
+                            <li>Created on <strong>9/13/2024</strong> at <strong>12:24 AM</strong> by <strong style="cursor:help;" title="Jakarta, Jakarta, Indonesia">1.1.1.1</strong></li>
+                            <li>Clicked <strong>200</strong> times, last on <strong>9/13/2024</strong></li>
+                        </ul>
+                        <div class="grid">
+                            <a href="/links?short={{link.id}}&statistics=true" class="button emoji" aria-label="Link statistics">📊</a>
+                            <a href="/links?short={{link.id}}&delete=true" class="button emoji" aria-label="Delete">🗑️</a>
+                            <a href="/links?short={{link.id}}&edit=true" class="button emoji" aria-label="Edit link">✏️</a>
+                        </div>
+                        {% else %}
+                        <h2>Select a link</h2>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>This site is running redeyes, version {{ version }}: a simple URL shortener in Python.</p>
+
+            <p>
+                <a href="https://github.com/lukewhrit/redeyes" rel="noreferrer" target="_blank">Source</a> ・
+                <a href="https://github.com/lukewhrit/redeyes/blob/main/README.md#documentation" rel="noreferrer" target="_blank">Docs</a> ・
+                <a href="{{ url_for('static', filename='LICENSE.txt') }}" rel="noreferrer" target="_blank">License</a>
+            </p>
+        </footer>
+    </body>
+</html>

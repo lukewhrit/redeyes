@@ -13,7 +13,7 @@
     </head>
     <body>
         <main>
-            <div>
+            <div id="box">
                 <form method="post">
                     <label for="link">
                         <h1>redeyes</h1>
@@ -26,7 +26,7 @@
                 {% if link %}
                 <p id="link-text">
                     Success!
-                    <a href="https://{{ link }}" rel="noreferrer" target="_blank">
+                    <a href="https://{{ link }}" rel="noreferrer" target="_blank" id="success-link">
                         {{ link }}
                     </a>
                 </p>
